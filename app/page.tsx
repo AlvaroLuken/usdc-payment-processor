@@ -26,7 +26,9 @@ export default function Home() {
     console.log(data);
     const bigNumber: any = data;
 
-    setUserBalance(bigNumber.toString().substring(0, 4));
+    if (bigNumber) {
+      setUserBalance(bigNumber.toString().substring(0, 4));
+    }
   }, []);
 
   const { config } = usePrepareContractWrite({
