@@ -175,8 +175,15 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="mt-8">
-          Your current $TNUSDC balance is: {Number(userBalance)}
+        <div className="flex gap-16 items-center mt-8">
+          <div>Your current $TNUSDC balance is: {Number(userBalance)}</div>
+          <a
+            href="https://goerli.arbiscan.io/token/0x18cF7aA688e76e0A19bAcf016d33F3c3686894Eb"
+            target="_blank"
+            className="link link-secondary"
+          >
+            Test token contract address on Goerli Arbiscan
+          </a>
         </div>
       </main>
     </div>
