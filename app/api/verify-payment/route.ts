@@ -1,10 +1,10 @@
 import { verifyMessage } from "ethers";
 import { NextResponse } from "next/server";
 
-const { Alchemy, Network, AssetTransfersCategory } = require("alchemy-sdk");
+const { Alchemy, Network } = require("alchemy-sdk");
 
 const settings = {
-  apiKey: process.env.ALCHEMY_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
   network: Network.ARB_GOERLI, // Replace with your desired network.
 };
 
@@ -51,8 +51,6 @@ async function getAmountTokensSent(userAddress: any) {
     excludeZeroValue: true,
     category: ["erc20"],
   });
-  console.log(userAddress);
-  console.log(getTransfers);
   // aggregates all values to create a total amount sent... EVER!
   let totalTransferValue = 0;
   getTransfers["transfers"].forEach((tx: any) => {
