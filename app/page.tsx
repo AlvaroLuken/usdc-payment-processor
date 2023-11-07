@@ -155,7 +155,7 @@ export default function Home() {
               <div>
                 {!hasVerified ? (
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary text-white"
                     onClick={() => signMessage({ message })}
                   >
                     <b>Verify Payment With Signature</b>
