@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   let totalTokensSent = 0;
 
   if (signerAddress == recoveredAddress) {
-    console.log("Successful signature verification!");
+    // console.log("Successful signature verification!");
     totalTokensSent = await getAmountTokensSent(recoveredAddress);
   }
 
