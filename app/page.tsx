@@ -1,10 +1,7 @@
 "use client";
-import testnetTokenAbi from "@common/utils/abi/TestnetToken.json";
-import { ConnectKitButton } from "connectkit";
 import { useEffect, useState } from "react";
 import {
   useAccount,
-  useContractRead,
   useContractWrite,
   usePrepareContractWrite,
   useSignMessage,
@@ -13,23 +10,21 @@ import {
 export default function Home() {
   const { address, isConnected } = useAccount();
   const [hasVerified, setHasVerified] = useState(false);
-  const [userBalance, setUserBalance] = useState(0);
+  const [userBalance] = useState(1000);
 
-  const { data } = useContractRead({
-    address: "0x18cF7aA688e76e0A19bAcf016d33F3c3686894Eb",
-    abi: testnetTokenAbi,
-    functionName: "balanceOf",
-    args: [address],
-  });
+  // const { data } = useContractRead({
+  //   address: "0x18cF7aA688e76e0A19bAcf016d33F3c3686894Eb",
+  //   abi: testnetTokenAbi,
+  //   functionName: "balanceOf",
+  //   args: [address],
+  // });
 
-  useEffect(() => {
-    console.log(data);
-    const bigNumber: any = data;
-
-    if (bigNumber) {
-      setUserBalance(bigNumber.toString().substring(0, 4));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (data) {
+  //     const bigNumber = data.toString();
+  //     setUserBalance(1000);
+  //   }
+  // }, [data]);
 
   const { config } = usePrepareContractWrite({
     address: "0x18cF7aA688e76e0A19bAcf016d33F3c3686894Eb",
@@ -93,7 +88,7 @@ export default function Home() {
 
   return (
     <div className="hero my-10 min-h-full w-full">
-      <main className="flex flex-col text-center justify-center items-center w-[100vw]">
+      <div className="flex flex-col text-center justify-center items-center w-[100vw]">
         <h1 className="text-5xl font-bold">
           Welcome to the $USDC Payment Processor
         </h1>
@@ -158,7 +153,7 @@ export default function Home() {
               <h1 className="text-4xl font-bold">Secret 👇</h1>
               <div className="text-xl">{secretMessage}</div>
               <div>
-                {!hasVerified && isConnected ? (
+                {!hasVerified ? (
                   <button
                     className="btn btn-primary"
                     onClick={() => signMessage({ message })}
@@ -166,9 +161,7 @@ export default function Home() {
                     <b>Verify Payment With Signature</b>
                   </button>
                 ) : (
-                  <div className="flex justify-center items-center">
-                    <ConnectKitButton />
-                  </div>
+                  ""
                 )}
                 {error && <div>{error.message}</div>}
               </div>
@@ -185,7 +178,7 @@ export default function Home() {
             Test token contract address on Goerli Arbiscan
           </a>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
